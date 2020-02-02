@@ -106,7 +106,6 @@ public class UserServlet extends BaseServlet {
     }
 
     public void active(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("ddddddddddddd");
         String code = request.getParameter("code");
         if (code != null) {
             boolean flag = service.active(code);

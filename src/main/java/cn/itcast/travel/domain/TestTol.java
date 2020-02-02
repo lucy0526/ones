@@ -11,16 +11,16 @@ public class TestTol {
     private String tdate;   //上架时间
     private int count;//收藏数量
     private int cid;//所属分类，必输
-    private String rimage;//缩略图
+    private String timage;//缩略图
     private String source;//抓取数据的来源地址
 
     private Category category;//所属分类
-    private List<RouteImg> routeImgList;//商品详情图片列表
+    private List<TestTolImg> testTolImgList;//商品详情图片列表
 
     public TestTol() {
     }
 
-    public TestTol(int tid, String tname, double price, String testIntroduce, String tflag, String tdate, int count, int cid, String rimage, String source, Category category, List<RouteImg> routeImgList) {
+    public TestTol(int tid, String tname, double price, String testIntroduce, String tflag, String tdate, int count, int cid, String timage, String source, Category category, List<TestTolImg> testTolImgList) {
         this.tid = tid;
         this.tname = tname;
         this.price = price;
@@ -29,10 +29,10 @@ public class TestTol {
         this.tdate = tdate;
         this.count = count;
         this.cid = cid;
-        this.rimage = rimage;
+        this.timage = timage;
         this.source = source;
         this.category = category;
-        this.routeImgList = routeImgList;
+        this.testTolImgList = testTolImgList;
     }
 
     public int getTid() {
@@ -99,12 +99,12 @@ public class TestTol {
         this.cid = cid;
     }
 
-    public String getRimage() {
-        return rimage;
+    public String getTimage() {
+        return timage;
     }
 
-    public void setRimage(String rimage) {
-        this.rimage = rimage;
+    public void setTimage(String timage) {
+        this.timage = timage;
     }
 
     public String getSource() {
@@ -123,11 +123,11 @@ public class TestTol {
         this.category = category;
     }
 
-    public List<RouteImg> getRouteImgList() {
-        return routeImgList;
+    public List<TestTolImg> getTestTolImgList() {
+        return testTolImgList;
     }
 
-    public void setRouteImgList(List<RouteImg> routeImgList) {
-        this.routeImgList = routeImgList;
+    public void setTestTolImgList(List<TestTolImg> testTolImgList) {
+        this.testTolImgList = testTolImgList;
     }
 }
