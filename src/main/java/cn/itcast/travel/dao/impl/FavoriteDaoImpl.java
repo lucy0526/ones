@@ -15,26 +15,23 @@ public class FavoriteDaoImpl implements FavoriteDao {
     /**
      * 查询收藏次数
      */
-    @Override
-    public int findCountByRid(int rid) {
-        String sql = "select count(*) from tab_favorite where rid=?";
-        return template.queryForObject(sql, Integer.class, rid);
+    public int findCountByTid(int tid) {
+        String sql = "select count(*) from tab_favorite where tid=?";
+        return template.queryForObject(sql, Integer.class, tid);
     }
 
-    @Override
-    public Favorite findByRidAndUid(int rid, int uid) {
+    public Favorite findByTidAndUid(int tid, int uid) {
         Favorite favorite = null;
         try {
-            String sql = "select * from tab_favorite where rid=? and uid=?";
-            favorite = template.queryForObject(sql, new BeanPropertyRowMapper<Favorite>(Favorite.class), rid, uid);
+            String sql = "select * from tab_favorite where tid=? and uid=?";
+            favorite = template.queryForObject(sql, new BeanPropertyRowMapper<Favorite>(Favorite.class), tid, uid);
         } catch (Exception e) {//防止没有查到，报错
         }
         return favorite;
     }
 
-    @Override
-    public void add(int rid, int uid) {
+    public void add(int tid, int uid) {
         String sql = "insert into tab_favorite values(?,?,?)";
-        template.update(sql, rid, new Date(), uid);
+        template.update(sql, tid, new Date(), uid);
     }
 }

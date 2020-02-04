@@ -4,9 +4,9 @@ import cn.itcast.travel.domain.Favorite;
 
 public interface FavoriteDao {
 
-    public int findCountByRid(int rid);
+    public int findCountByTid(int tid);
 
-    public Favorite findByRidAndUid(int rid, int uid);
+    public Favorite findByTidAndUid(int tid, int uid);
 
-    void add(int rid, int uid);
+    void add(int tid, int uid);
 }

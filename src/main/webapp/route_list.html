@@ -131,65 +131,6 @@
         }
     </script>
 
-    <!--  //旧方法
-    --<script>
-          $(function () {
-
-              //1.  切割字符串，拿到第二个值
-              var search = location.search;
-              //alert(search);//?id=5
-              var cid = search.split("=")[1];
-
-              //2.  设置分页工具数据展示
-              $.get("route/pageQuery", {cid: cid}, function (pb) {
-                  $("#totalPage").html(pb.totalPage);
-                  $("#totalCount").html(pb.totalCount);
-
-
-                  //3.  分页
-                  var list = "";
-                  var firstPage = '<li><a href="">首页</a></li>';
-                  var beforePage = '<li class="threeword"><a href="#">上一页</a></li>';
-                  list += firstPage;
-                  list += beforePage;
-
-                  for (var i = 1; i <= pb.totalPage; i++) {
-                      var li = '<li><a href="#">' + i + '</a></li>';
-                      list += li;
-                  }
-                  var nextPage = '<li class="threeword"><a href="javascript:;">下一页</a></li>';
-                  var lastPage = '<li class="threeword"><a href="javascript:;">末页</a></li>';
-                  list += nextPage;
-                  list += lastPage;
-
-                  $("#pageNum").html(list);
-
-                  // 4.  列表数据
-                  var route_list = "";
-                  for (var i = 0; i < pb.list.length; i++) {
-                      var route = pb.list[i];
-                      var li = '<li>\n' +
-                          '                <div class="img"><img src="' + route.rimage + '" style="width: 299px;"></div>\n' +
-                          '                    <div class="text1">\n' +
-                          '                    <p>' + route.tname + '</p>\n' +
-                          '                <br/>\n' +
-                          '                <p>' + route.routeIntroduce + '</p>\n' +
-                          '                </div>\n' +
-                          '                <div class="price">\n' +
-                          '                    <p class="price_num">\n' +
-                          '                    <span>&yen;</span>\n' +
-                          '                <span>' + route.price + '</span>\n' +
-                          '                <span>起</span>\n' +
-                          '                </p>\n' +
-                          '                <p><a href="route_detail.html">查看详情</a></p>\n' +
-                          '                </div>\n' +
-                          '                </li>';
-                      route_list += li;
-                  }
-                  $("#route").html(route_list);
-              });
-          });
-      </script>-->
 </head>
 <body>
 <!--引入头部-->
@@ -207,22 +148,6 @@
                     <span class="jg">价格</span>
                 </div>
                 <ul id="route">
-                    <!--<li>
-                        <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
-                        <div class="text1">
-                            <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
-                            <br/>
-                            <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                        </div>
-                        <div class="price">
-                            <p class="price_num">
-                                <span>&yen;</span>
-                                <span>299</span>
-                                <span>起</span>
-                            </p>
-                            <p><a href="route_detail.html">查看详情</a></p>
-                        </div>
-                    </li>-->
                 </ul>
                 <div class="page_num_inf">
                     <i></i> 共
@@ -231,20 +156,6 @@
                 </div>
                 <div class="pageNum">
                     <ul id="pageNum">
-                        <!--<li><a href="">首页</a></li>
-                        <li class="threeword"><a href="#">上一页</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#">7</a></li>
-                        <li><a href="#">8</a></li>
-                        <li><a href="#">9</a></li>
-                        <li><a href="#">10</a></li>
-                        <li class="threeword"><a href="javascript:;">下一页</a></li>
-                        <li class="threeword"><a href="javascript:;">末页</a></li>-->
                     </ul>
                 </div>
             </div>

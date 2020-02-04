@@ -9,8 +9,8 @@ public class FavoriteServiceImpl implements FavoriteService {
     private FavoriteDao favoriteDao = new FavoriteDaoImpl();
 
     @Override
-    public boolean isFavorite(String rid, int uid) {
-        Favorite favorite = favoriteDao.findByRidAndUid(Integer.parseInt(rid), uid);
+    public boolean isFavorite(String tid, int uid) {
+        Favorite favorite = favoriteDao.findByTidAndUid(Integer.parseInt(tid), uid);
         if (favorite != null) {
             return true;
         } else
@@ -18,7 +18,7 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
     @Override
-    public void add(String rid, int uid) {
-        favoriteDao.add(Integer.parseInt(rid), uid);
+    public void add(String tid, int uid) {
+        favoriteDao.add(Integer.parseInt(tid), uid);
     }
 }

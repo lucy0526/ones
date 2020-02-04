@@ -150,6 +150,24 @@ ALTER TABLE tab_common ADD CONSTRAINT FK_common_user FOREIGN KEY (uid)
 /*==============================================================*/
 /* 数据                                                         */
 /*==============================================================*/
+/*[15:33:31][10 ms]*/ INSERT INTO `ones`.`tab_test_img` (`tid`, `bigPic`, `smallPic`) VALUES ('25', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m40920d0669855e745d97f9ad1df966ebb.jpg', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m20920d0669855e745d97f9ad1df966ebb.jpg');
+/*[15:34:07][4 ms]*/ INSERT INTO `ones`.`tab_test_img` (`tid`, `bigPic`, `smallPic`) VALUES ('25', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m49788843d72171643297ccc033d9288ee.jpg', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m29788843d72171643297ccc033d9288ee.jpg');
+/*[15:34:46][6 ms]*/ INSERT INTO `ones`.`tab_test_img` (`tid`, `bigPic`, `smallPic`) VALUES ('25', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m4531a8dbceefa2c44e6d0e35627cd2689.jpg', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m2531a8dbceefa2c44e6d0e35627cd2689.jpg');
+/*[15:35:11][8 ms]*/ INSERT INTO `ones`.`tab_test_img` (`tid`, `bigPic`, `smallPic`) VALUES ('25', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m46d8cb900e9f6c0a762aca19eae40c00c.jpg', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m26d8cb900e9f6c0a762aca19eae40c00c.jpg');
+/*[15:35:33][2 ms]*/ INSERT INTO `ones`.`tab_test_img` (`tid`, `bigPic`, `smallPic`) VALUES ('25', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m45ea00f6eba562a767b5095bbf8cffe07.jpg', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m25ea00f6eba562a767b5095bbf8cffe07.jpg');
+
+
+
+
+
+
+
+
+
+
+
+
+
 INSERT INTO `ones`.`tab_test_tol` (`tname`, `price`, `testIntroduce`, `tflag`, `tdate`, `count`, `cid`, `timage`, `source`) VALUES
 ('LoadRunner', '0', 'LoadRunner，是一种预测系统行为和性能的负载测试工具。通过模拟上千万用户实施并发负载及实时性能监测的方式来确认和查找问题，LoadRunner能够对整个企业架构进行测试。企业使用LoadRunner能最大限度地缩短测试时间，优化性能和加速应用系统的发布周期。',
 '1', '2020-01-22', '0', '1', 'images/jiangxuan_4.jpg', 'https://zhidao.baidu.com/question/526817422.html?qbl=relate_question_0&word=%C8%ED%BC%FE%B2%E2%CA%D4%B9%A4%BE%DF%B3%A3%D3%C3%B5%C4%B6%BC%D3%D0%C4%C4%D0%A9');

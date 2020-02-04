@@ -28,7 +28,7 @@
                      src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m49788843d72171643297ccc033d9288ee.jpg">
             </dt>
             <dd id="dd">
-                <a class="up_img up_img_disable"></a>
+                <!--<a class="up_img up_img_disable"></a>
                 <a title="" class="little_img"
                    data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m40920d0669855e745d97f9ad1df966ebb.jpg">
                     <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m20920d0669855e745d97f9ad1df966ebb.jpg">
@@ -70,16 +70,14 @@
                    style="display:none;">
                     <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m287bbbc6e43eba6aa6a36cc1a182f7a20.jpg">
                 </a>
-                <a class="down_img down_img_disable" style="margin-bottom: 0;"></a>
+                <a class="down_img down_img_disable" style="margin-bottom: 0;"></a>-->
             </dd>
         </dl>
         <div class="prosum_right">
-            <p class="pros_title" id="rname"></p>
-            <p class="hot" id="routeIntro"></p>
+            <p class="pros_title" id="tname"></p>
+            <p class="hot" id="testIntroduce"></p>
             <div class="pros_other">
-                <p>经营商家 ：<span id="sname">黑马国旅</span></p>
-                <p>咨询电话 : <span id="consphone">400-618-9090</span></p>
-                <p>地址 ： <span id="address">传智播客黑马程序员</span></p>
+                <p><span id="source_sp"> </span></p>
             </div>
             <div class="pros_price">
                 <p class="price"><strong id="price"> </strong><span>起</span></p>
@@ -194,26 +192,25 @@
     }
 
     $(function () {
-        var rid = getParameter("rid");
-        $.get("route/findOne", {rid: rid}, function (route) {
-            $("#rname").html(route.rname);
-            $("#routeIntro").html(route.routeIntroduce);
-            $("#price").html("¥" + route.price);
-            $("#sname").html(route.seller.sname);
-            $("#consphone").html(route.seller.consphone);
-            $("#address").html(route.seller.address);
-            $("#favoriteCount").html("已收藏" + route.count + "次");
+        var tid = getParameter("tid");
+        $.get("testTol/findOne", {tid: tid}, function (testTol) {
+            $("#tname").html(testTol.tname);
+            $("#testTolIntro").html(testTol.testTolIntroduce);
+            $("#price").html("¥" + testTol.price);
+            $("#favoriteCount").html("已收藏" + testTol.count + "次");
+            $("#source_sp").html('<a href="'+testTol.source+'">点击查看使用详情</a>');
+
 
             var ddstr = '<a class="up_img up_img_disable"></a>';
-            for (var i = 0; i < route.routeImgList.length; i++) {
+            for (var i = 0; i < testTol.testTolImgList.length; i++) {
                 var astr = "";
                 if (i >= 4) {
-                    astr = '<a title="" class="little_img" data-bigpic="' + route.routeImgList[i].bigPic + '" style="display:none;">\n' +
-                        '                    <img src="' + route.routeImgList[i].smallPic + '">\n' +
+                    astr = '<a title="" class="little_img" data-bigpic="' + testTol.testTolImgList[i].bigPic + '" style="display:none;">\n' +
+                        '                    <img src="' + testTol.testTolImgList[i].smallPic + '">\n' +
                         '                    </a>';
                 } else {
-                    astr = '<a title="" class="little_img" data-bigpic="' + route.routeImgList[i].bigPic + '">\n' +
-                        '                    <img src="' + route.routeImgList[i].smallPic + '">\n' +
+                    astr = '<a title="" class="little_img" data-bigpic="' + testTol.testTolImgList[i].bigPic + '">\n' +
+                        '                    <img src="' + testTol.testTolImgList[i].smallPic + '">\n' +
                         '                    </a>';
 
                 }
@@ -226,8 +223,8 @@
     })
     //判断是否收藏
     $(function () {
-        var rid = getParameter("rid");
-        $.get("route/isFavorite", {rid: rid}, function (flag) {
+        var tid = getParameter("tid");
+        $.get("testTol/isFavorite", {tid: tid}, function (flag) {
             if (flag) {
                 //添加样式
                 $("#favorite").addClass("already");
@@ -243,15 +240,15 @@
 
     //收藏
     function addFavorite() {
-        var rid = getParameter("rid");
+        var tid = getParameter("tid");
         $.get("user/findOne", {}, function (user) {
             if (user != null) {
-                $.get("route/addFavorite", {rid: rid}, function () {
+                $.get("testTol/addFavorite", {tid: tid}, function () {
                     location.reload();
                 });
             } else {
                 alert("请先登录！");
-                location.href = "http://localhost/travel/login.html";
+                location.href = "http://localhost/ones/login.html";
             }
 
         })

@@ -67,9 +67,8 @@ public class TestTolServiceImpl implements TestTolService {
         TestTol testTol = testTolDao.findOne(Integer.parseInt(tid));
         List<TestTolImg> testTolImgList = testTolImgDao.findByTid(testTol.getTid());
         testTol.setTestTolImgList(testTolImgList);
-        int count = favoriteDao.findCountByRid(testTol.getTid());
+        int count = favoriteDao.findCountByTid(testTol.getTid());
         testTol.setCount(count);
-
         return testTol;
     }
 }
