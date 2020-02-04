@@ -15,5 +15,7 @@ public interface TestTolDao {
 
     List<TestTol> findByPage(int cid, int start, int pageSize, String tname);
 
+    List<TestTol> findByOrderPopAndPage(int start, int pageSize);
+
     TestTol findOne(int parseInt);
 }

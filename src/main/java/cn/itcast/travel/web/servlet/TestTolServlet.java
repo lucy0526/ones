@@ -42,6 +42,9 @@ public class TestTolServlet extends BaseServlet {
         String tname = request.getParameter("tname");
         tname = new String(tname.getBytes("iso-8859-1"), "utf-8");
 
+        if ("null".equalsIgnoreCase(tname))
+            tname = null;
+
         int cid = 0;
 //        将字符串转为数字
         if (!"null".equalsIgnoreCase(cidStr) && cidStr != null && cidStr.length() > 0) {
@@ -60,6 +63,25 @@ public class TestTolServlet extends BaseServlet {
 
         //查询数据库
         PageBean<TestTol> pb = testTolService.pageQuery(cid, currentPage, pageSize, tname);
+        writeValue(response, pb);
+    }
+
+    public void findByOrderPopAndPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String currentPageStr = request.getParameter("currentPage");
+        String pageSizeStr = request.getParameter("pageSize");
+
+        int currentPage = 1;
+        if (currentPageStr != null && currentPageStr.length() > 0) {
+            currentPage = Integer.parseInt(currentPageStr);
+        }
+
+        int pageSize = 5;
+        if (pageSizeStr != null && pageSizeStr.length() > 0) {
+            pageSize = Integer.parseInt(pageSizeStr);
+        }
+
+        //查询数据库
+        PageBean<TestTol> pb = testTolService.findByOrderPopAndPage(currentPage, pageSize);
         writeValue(response, pb);
     }
 

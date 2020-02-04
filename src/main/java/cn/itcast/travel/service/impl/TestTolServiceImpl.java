@@ -45,6 +45,24 @@ public class TestTolServiceImpl implements TestTolService {
     }
 
     @Override
+    public PageBean<TestTol> findByOrderPopAndPage(int currentPage, int pageSize) {
+        PageBean<TestTol> pb = new PageBean<TestTol>();
+        pb.setCurrentPage(currentPage);
+        pb.setPageSize(pageSize);
+
+        int totalCount = testTolDao.findTotalCount(0, null);
+        pb.setTotalCount(totalCount);
+
+        int start = (currentPage-1) * pageSize;
+        List<TestTol> list = testTolDao.findByOrderPopAndPage(start, pageSize);
+        pb.setList(list);
+
+        int totalPage = totalCount%pageSize == 0 ? totalCount/pageSize : (totalCount/pageSize)+1;
+        pb.setTotalPage(totalPage);
+        return pb;
+    }
+
+    @Override
     public TestTol findOne(String tid) {
         TestTol testTol = testTolDao.findOne(Integer.parseInt(tid));
         List<TestTolImg> testTolImgList = testTolImgDao.findByTid(testTol.getTid());

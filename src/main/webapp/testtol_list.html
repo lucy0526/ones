@@ -17,19 +17,39 @@
         $(function () {
             var cid = getParameter("cid");
             var tname = getParameter("tname");//搜索框
-            if(tname){
+            if (tname) {
                 //url解码中文
                 tname = window.decodeURIComponent(tname);
             }
             //当页码加载完成后，调用load方法，发送ajax请求加载数据
             load(cid, null, tname);
+
+            findPopularity();
         });
+
+        function findPopularity() {
+            $.get("testTol/findPopularity", {}, function (data) {
+                var list = "";
+                for (var i = 0; i < data.length && i<5; i++) {
+                    var li = '<li>\n' +
+                        '        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>\n' +
+                        '            <div class="right">\n' +
+                        '            <p>' + data[i].tname + '</p>\n' +
+                        '        <p>收藏次数<span><span>' + data[i].count + '</span>次</span>\n' +
+                        '        </p>\n' +
+                        '        </div>\n' +
+                        '        </li>';
+                    list += li;
+                }
+                $("#intro_ul").html(list);
+            })
+        }
 
         /*
         加载页面
          */
         function load(cid, currentPage, tname) {
-            $.get("route/pageQuery", {cid: cid, currentPage: currentPage, tname: tname}, function (pb) {
+            $.get("testTol/pageQuery", {cid: cid, currentPage: currentPage, tname: tname}, function (pb) {
                 //1.分页工具条数据展示
                 $("#totalPage").html(pb.totalPage);
                 $("#totalCount").html(pb.totalCount);
@@ -88,41 +108,42 @@
                     lis += li;
                 }
                 var nextNum = pb.currentPage + 1;
+                var lastNum = pb.totalPage;
                 if (nextNum >= pb.totalPage) {
                     nextNum = pb.totalPage;
                 }
                 var nextPage = '<li onclick="javascipt:load(' + cid + ',' + nextNum + ',\'' + tname + '\')" class="threeword"><a href="javascript:void(0)">下一页</a></li>';
-                var lastPage = '<li onclick="javascipt:load(' + cid + ',pb.totalPage,\'' + tname + '\')" class="threeword"><a href="javascript:void(0)">末页</a></li>';
+                var lastPage = '<li onclick="javascipt:load(' + cid + ',' + lastNum + ',\'' + tname + '\')" class="threeword"><a href="javascript:void(0)">末页</a></li>';
                 lis += nextPage;
                 lis += lastPage;
                 //将lis内容设置到 ul
                 $("#pageNum").html(lis);
 
                 //3.列表数据展示
-                var route_lis = "";
+                var testTol_lis = "";
                 for (var i = 0; i < pb.list.length; i++) {
                     //获取{rid:1,tname:"xxx"}
-                    var route = pb.list[i];
+                    var testTol = pb.list[i];
 
                     var li = '<li>\n' +
-                        '                        <div class="img"><img src="' + route.rimage + '" style="width: 299px;"></div>\n' +
+                        '                        <div class="img"><img src="' + testTol.timage + '" style="width: 299px;"></div>\n' +
                         '                        <div class="text1">\n' +
-                        '                            <p>' + route.tname + '</p>\n' +
+                        '                            <p>' + testTol.tname + '</p>\n' +
                         '                            <br/>\n' +
-                        '                            <p>' + route.routeIntroduce + '</p>\n' +
+                        '                            <p>' + testTol.testIntroduce + '</p>\n' +
                         '                        </div>\n' +
                         '                        <div class="price">\n' +
                         '                            <p class="price_num">\n' +
-                        '                                <span>&yen;</span>\n' +
-                        '                                <span>' + route.price + '</span>\n' +
-                        '                                <span>起</span>\n' +
+                        '                                <span>收藏</span>\n' +
+                        '                                <span>' + testTol.count + '</span>\n' +
+                        '                                <span>次</span>\n' +
                         '                            </p>\n' +
-                        '                            <p><a href="route_detail.html?rid='+route.rid+'">查看详情</a></p>\n' +
+                        '                            <p><a href="testTol_detail.html?rid=' + testTol.tid + '">查看详情</a></p>\n' +
                         '                        </div>\n' +
                         '                    </li>';
-                    route_lis += li;
+                    testTol_lis += li;
                 }
-                $("#route").html(route_lis);
+                $("#testTol").html(testTol_lis);
 
                 //跳转页面后，定位到页面顶部
                 window.scrollTo(0, 0);
@@ -141,7 +162,7 @@
               var cid = search.split("=")[1];
 
               //2.  设置分页工具数据展示
-              $.get("route/pageQuery", {cid: cid}, function (pb) {
+              $.get("testTol/pageQuery", {cid: cid}, function (pb) {
                   $("#totalPage").html(pb.totalPage);
                   $("#totalCount").html(pb.totalCount);
 
@@ -165,28 +186,28 @@
                   $("#pageNum").html(list);
 
                   // 4.  列表数据
-                  var route_list = "";
+                  var testTol_list = "";
                   for (var i = 0; i < pb.list.length; i++) {
-                      var route = pb.list[i];
+                      var testTol = pb.list[i];
                       var li = '<li>\n' +
-                          '                <div class="img"><img src="' + route.rimage + '" style="width: 299px;"></div>\n' +
+                          '                <div class="img"><img src="' + testTol.rimage + '" style="width: 299px;"></div>\n' +
                           '                    <div class="text1">\n' +
-                          '                    <p>' + route.tname + '</p>\n' +
+                          '                    <p>' + testTol.tname + '</p>\n' +
                           '                <br/>\n' +
-                          '                <p>' + route.routeIntroduce + '</p>\n' +
+                          '                <p>' + testTol.testTolIntroduce + '</p>\n' +
                           '                </div>\n' +
                           '                <div class="price">\n' +
                           '                    <p class="price_num">\n' +
                           '                    <span>&yen;</span>\n' +
-                          '                <span>' + route.price + '</span>\n' +
+                          '                <span>' + testTol.price + '</span>\n' +
                           '                <span>起</span>\n' +
                           '                </p>\n' +
-                          '                <p><a href="route_detail.html">查看详情</a></p>\n' +
+                          '                <p><a href="testTol_detail.html">查看详情</a></p>\n' +
                           '                </div>\n' +
                           '                </li>';
-                      route_list += li;
+                      testTol_list += li;
                   }
-                  $("#route").html(route_list);
+                  $("#testTol").html(testTol_list);
               });
           });
       </script>-->
@@ -203,10 +224,10 @@
         <div class="xinxi clearfix">
             <div class="left">
                 <div class="header">
-                    <span>商品信息</span>
-                    <span class="jg">价格</span>
+                    <span>测试工具信息</span>
+                    <span class="jg">收藏次数</span>
                 </div>
-                <ul id="route">
+                <ul id="testTol">
                     <!--<li>
                         <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
                         <div class="text1">
@@ -220,7 +241,7 @@
                                 <span>299</span>
                                 <span>起</span>
                             </p>
-                            <p><a href="route_detail.html">查看详情</a></p>
+                            <p><a href="testTol_detail.html">查看详情</a></p>
                         </div>
                     </li>-->
                 </ul>
@@ -253,7 +274,7 @@
                     <div class="hot">HOT</div>
                     <span>热门推荐</span>
                 </div>
-                <ul>
+                <ul id="intro_ul">
                     <li>
                         <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
                         <div class="right">
@@ -262,38 +283,7 @@
                             </p>
                         </div>
                     </li>
-                    <li>
-                        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
-                        <div class="right">
-                            <p>清远新银盏温泉度假村酒店/自由行套...</p>
-                            <p>网付价<span>&yen;<span>899</span>起</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
-                        <div class="right">
-                            <p>清远新银盏温泉度假村酒店/自由行套...</p>
-                            <p>网付价<span>&yen;<span>899</span>起</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
-                        <div class="right">
-                            <p>清远新银盏温泉度假村酒店/自由行套...</p>
-                            <p>网付价<span>&yen;<span>899</span>起</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
-                        <div class="right">
-                            <p>清远新银盏温泉度假村酒店/自由行套...</p>
-                            <p>网付价<span>&yen;<span>899</span>起</span>
-                            </p>
-                        </div>
-                    </li>
+
                 </ul>
             </div>
         </div>

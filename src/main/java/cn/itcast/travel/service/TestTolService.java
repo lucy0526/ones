@@ -11,6 +11,7 @@ public interface TestTolService {
     List<TestTol> findPopularity();
 
     PageBean<TestTol> pageQuery(int cid, int currentPage, int pageSize, String tname);
+    PageBean<TestTol> findByOrderPopAndPage(int currentPage, int pageSize);
 
     TestTol findOne(String tid);
 }

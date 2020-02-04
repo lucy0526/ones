@@ -20,7 +20,7 @@ public class TestTolDaoImpl implements TestTolDao {
     }
     @Override
     public List<TestTol> findPopularity() {
-        String sql = "SELECT * FROM tab_test_tol ORDER BY COUNT DESC LIMIT 4";
+        String sql = "SELECT * FROM tab_test_tol ORDER BY COUNT DESC LIMIT 8";
         return template.query(sql, new BeanPropertyRowMapper<TestTol>(TestTol.class));
     }
 
@@ -62,6 +62,11 @@ public class TestTolDaoImpl implements TestTolDao {
         sql = sb.toString();
         return template.query(sql, new BeanPropertyRowMapper<TestTol>(TestTol.class), params.toArray());
 
+    }
+    @Override
+    public List<TestTol> findByOrderPopAndPage(int start, int pageSize) {
+        String sql = "SELECT * FROM tab_test_tol ORDER BY COUNT DESC limit ?,?";
+        return template.query(sql, new BeanPropertyRowMapper<TestTol>(TestTol.class), start, pageSize);
     }
 
     @Override
