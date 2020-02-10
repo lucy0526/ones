@@ -37,6 +37,7 @@ CREATE TABLE tab_category
    UNIQUE KEY AK_nq_categoryname (cname)
 );
 
+
 /*==============================================================*/
 /* Table: tab_favorite       收藏数                              */
 /*==============================================================*/
@@ -110,6 +111,7 @@ CREATE TABLE tab_common
    cdate             DATE,
    uid                INT NOT NULL,
    tid                INT NOT NULL,
+   like               INT NOT NULL,
    PRIMARY KEY (cid)
 );
 
@@ -134,6 +136,7 @@ ALTER TABLE tab_common ADD CONSTRAINT FK_common_testtol FOREIGN KEY (tid)
 
 ALTER TABLE tab_common ADD CONSTRAINT FK_common_user FOREIGN KEY (uid)
       REFERENCES tab_user (uid) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 
 
 

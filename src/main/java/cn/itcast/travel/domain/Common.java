@@ -4,18 +4,28 @@ public class Common {
     private int cid;
     private int tid;
     private int uid;
+    private int like;
     private String cdescribe;
     private String cdate;//出生日期
 
     public Common() {
     }
 
-    public Common(int cid, int tid, int uid, String cdescribe, String cdate) {
+    public Common(int cid, int tid, int uid, int like, String cdescribe, String cdate) {
         this.cid = cid;
         this.tid = tid;
         this.uid = uid;
+        this.like = like;
         this.cdescribe = cdescribe;
         this.cdate = cdate;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 
     public int getCid() {
