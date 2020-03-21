@@ -32,7 +32,7 @@
                 var list = "";
                 for (var i = 0; i < data.length && i<5; i++) {
                     var li = '<li>\n' +
-                        '        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>\n' +
+                        '        <div class="left"><img src="' + data[i].timage + '" alt=""></div>\n' +
                         '            <div class="right">\n' +
                         '            <p><a href="testTol_detail.html?tid='+data[i].tid+'">' + data[i].tname + '</a></p>\n' +
                         '        <p>收藏次数<span><span>' + data[i].count + '</span>次</span>\n' +

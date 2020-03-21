@@ -15,6 +15,11 @@
           type="text/css"/>
     <script src="static/js/jquery.js" tppabs="http://bbs.51testing.com/static/js/jquery.js"
             type="text/javascript"></script>
+    <style type="text/css">
+        .pcb {
+            margin-right: 0
+        }
+    </style>
 
     <script>
 
@@ -73,11 +78,11 @@
                     //设置当前页码样式
                     if (pb.currentPage == i) {
 
-                        li = '<li class="curPage" onclick="javascipt:load(' + cid + ',' + i + ',\'' + tname + '\')"><a href="javascript:void(0)">' + i + '</a></li>';
+                        li = '<li class="curPage" onclick="javascipt:load(' + tid + ',' + i + ')"><a href="javascript:void(0)">' + i + '</a></li>';
 
                     } else {
                         //创建页码的li
-                        li = '<li onclick="javascipt:load(' + cid + ',' + i + ',\'' + tname + '\')"><a href="javascript:void(0)">' + i + '</a></li>';
+                        li = '<li onclick="javascipt:load(' + tid + ',' + i + ')"><a href="javascript:void(0)">' + i + '</a></li>';
                     }
                     //拼接字符串
                     lis += li;
@@ -86,38 +91,109 @@
                 if (nextNum >= pb.totalPage) {
                     nextNum = pb.totalPage;
                 }
-                var nextPage = '<li onclick="javascipt:load(' + cid + ',' + nextNum + ',\'' + tname + '\')" class="threeword"><a href="javascript:void(0)">下一页</a></li>';
-                var lastPage = '<li onclick="javascipt:load(' + cid + ',pb.totalPage,\'' + tname + '\')" class="threeword"><a href="javascript:void(0)">末页</a></li>';
+                var nextPage = '<li onclick="javascipt:load(' + cid + ',' + nextNum + ')" class="threeword"><a href="javascript:void(0)">下一页</a></li>';
+                var lastPage = '<li onclick="javascipt:load(' + cid + ',pb.totalPage)" class="threeword"><a href="javascript:void(0)">末页</a></li>';
                 lis += nextPage;
                 lis += lastPage;
                 //将lis内容设置到 ul
                 $("#pageNum").html(lis);
 
                 //3.列表数据展示
-                var route_lis = "";
+                var common_lis = "";
                 for (var i = 0; i < pb.list.length; i++) {
                     //获取{rid:1,tname:"xxx"}
                     var route = pb.list[i];
 
-                    var li = '<li>\n' +
-                        '                        <div class="img"><img src="' + route.rimage + '" style="width: 299px;"></div>\n' +
-                        '                        <div class="text1">\n' +
-                        '                            <p>' + route.tname + '</p>\n' +
-                        '                            <br/>\n' +
-                        '                            <p>' + route.routeIntroduce + '</p>\n' +
+                    var li = '            <table cellpadding="0" cellspacing="0" class="plhin" summary="pid3129428">\n' +
+                        '                <tr>\n' +
+                        '                    <!--                    左边-->\n' +
+                        '                    <td class="pls" rowspan="2">\n' +
+                        '                        <div class="pls favatar">\n' +
+                        '                            <div class="pi">\n' +
+                        '                                <div class="authi">\n' +
+                        '                                </div>\n' +
+                        '                            </div>\n' +
+                        '\n' +
+                        '                            <!--                            用户显示-->\n' +
+                        '                            <div class="qdsmile">\n' +
+                        '                                <li>\n' +
+                        '                                    <center>用户</center>\n' +
+                        '                                    <table>\n' +
+                        '                                        <tr>\n' +
+                        '                                            <th>\n' +
+                        '                                            <th><font size="5px"></font><br>\n' +
+                        '                                                <span>6&nbsp;天前</span>\n' +
+                        '                                        </tr>\n' +
+                        '                                    </table>\n' +
+                        '                                </li>\n' +
+                        '                            </div>\n' +
                         '                        </div>\n' +
-                        '                        <div class="price">\n' +
-                        '                            <p class="price_num">\n' +
-                        '                                <span>&yen;</span>\n' +
-                        '                                <span>' + route.price + '</span>\n' +
-                        '                                <span>起</span>\n' +
-                        '                            </p>\n' +
-                        '                            <p><a href="route_detail.html?rid='+route.rid+'">查看详情</a></p>\n' +
+                        '                    </td>\n' +
+                        '                    <td class="plc">\n' +
+                        '                        <div class="pi">\n' +
+                        '                            <div class="pti">\n' +
+                        '                                <div class="pdbt">\n' +
+                        '                                </div>\n' +
+                        '                                <img class="authicn vm"\n' +
+                        '                                     src="static/image/common/online_member.gif"\n' +
+                        '                                     tppabs="http://bbs.51testing.com/static/image/common/online_member.gif"/>\n' +
+                        '                            </div>\n' +
                         '                        </div>\n' +
-                        '                    </li>';
-                    route_lis += li;
+                        '                        <div class="pct">\n' +
+                        '                            <div class="pcb">\n' +
+                        '\n' +
+                        '                                <div class="t_fsz">\n' +
+                        '                                    <!--                                    右边-->\n' +
+                        '                                    <table cellpadding="0" cellspacing="0">\n' +
+                        '                                        <tr>\n' +
+                        '                                            <td class="t_f">\n' +
+                        '                                                或许是因为在职面试，接到面试通知后，也没有认真的去准备面试，直到面试的前1天晚上，才开始临时抱佛脚，为面试做准备。看了一些软件测试相关的概念，网上找了一些测试工具的原理，还有工作中的一些总结：<br/>\n' +
+                        '                                                1.&nbsp;&nbsp;黑盒测试、白盒测试、动态测试、静态测试的概念及它们之间的关系。<br/>\n' +
+                        '                                                2.&nbsp; &nbsp; &nbsp; &nbsp; 性能测试、压力测试、负载测试、稳定性测试的概念以及它们之间的关系。<br/>\n' +
+                        '                                                3.&nbsp; &nbsp; &nbsp; &nbsp; 软件测试V型结构。<br/>\n' +
+                        '                                            </td>\n' +
+                        '                                        </tr>\n' +
+                        '                                    </table>\n' +
+                        '\n' +
+                        '                                </div>\n' +
+                        '                                <div class="cm">\n' +
+                        '                                </div>\n' +
+                        '\n' +
+                        '                                <div></div>\n' +
+                        '                            </div>\n' +
+                        '                        </div>\n' +
+                        '\n' +
+                        '                    </td>\n' +
+                        '                </tr>\n' +
+                        '                <tr>\n' +
+                        '                    <td class="plc plm">\n' +
+                        '                    </td>\n' +
+                        '                </tr>\n' +
+                        '                <tr></tr>\n' +
+                        '                <tr>\n' +
+                        '                    <td class="pls"></td>\n' +
+                        '                    <td class="plc" style="overflow:visible;">\n' +
+                        '                        <div class="po hin">\n' +
+                        '                            <div class="pob cl">\n' +
+                        '                                <em>\n' +
+                        '                                    <a class="fastre"\n' +
+                        '                                       href="forum.php-mod=post&action=reply&fid=86&tid=961842&reppost=3129428&extra=page=1&page=1.htm"\n' +
+                        '                                       tppabs="http://bbs.51testing.com/forum.php?mod=post&action=reply&fid=86&tid=961842&reppost=3129428&extra=page%3D1&page=1">点赞</a>\n' +
+                        '                                </em>\n' +
+                        '                            </div>\n' +
+                        '                        </div>\n' +
+                        '                    </td>\n' +
+                        '                </tr>\n' +
+                        '                <tr class="ad">\n' +
+                        '                    <td class="pls">\n' +
+                        '                    </td>\n' +
+                        '                    <td class="plc">\n' +
+                        '                    </td>\n' +
+                        '                </tr>\n' +
+                        '            </table>\n';
+                    common_lis += li;
                 }
-                $("#route").html(route_lis);
+                $("#commons").html(common_lis);
 
                 //跳转页面后，定位到页面顶部
                 window.scrollTo(0, 0);
@@ -163,18 +239,13 @@
 
         <!--        每条评论-->
         <div id="post_3129428">
-            <table cellpadding="0" cellspacing="0" class="plhin" id="pid3129428" summary="pid3129428">
+            <table cellpadding="0" cellspacing="0" class="plhin" summary="pid3129428">
                 <tr>
                     <!--                    左边-->
                     <td class="pls" rowspan="2">
-                        <div class="pls favatar" id="favatar3129428">
+                        <div class="pls favatar">
                             <div class="pi">
                                 <div class="authi">
-                                    <a class="xw1"
-                                       href="home.php-mod=space&uid=418397&do=profile.htm"
-                                       target="_blank"
-                                       tppabs="http://bbs.51testing.com/home.php?mod=space&uid=418397&do=profile">
-                                    </a>
                                 </div>
                             </div>
 
@@ -185,9 +256,8 @@
                                     <table>
                                         <tr>
                                             <th>
-
-                                            <th><font size="5px"></font><br><span
-                                                    title="2020-2-2 20:52">6&nbsp;天前</span>
+                                            <th><font size="5px"></font><br>
+                                                <span>6&nbsp;天前</span>
                                         </tr>
                                     </table>
                                 </li>
@@ -199,48 +269,19 @@
                             <div class="pti">
                                 <div class="pdbt">
                                 </div>
-                                <div class="authi">
-                                    <img class="authicn vm" id="authicon3129428"
-                                         src="static/image/common/online_member.gif"
-                                         tppabs="http://bbs.51testing.com/static/image/common/online_member.gif"/>
-                                    <em id="authorposton3129428">发表于 2013-5-22 00:35:41</em>
-                                    <span class="pipe">|</span>
-                                    <a href="forum.php-mod=viewthread&tid=961842&page=1&authorid=418397.htm"
-                                       rel="nofollow"
-                                       tppabs="http://bbs.51testing.com/forum.php?mod=viewthread&tid=961842&page=1&authorid=418397">只看该作者</a>
-                                    <span class="none"><img alt="回帖奖励"
-                                                            class="vm"
-                                                            src="static/image/common/arw_r.gif"
-                                                            tppabs="http://bbs.51testing.com/static/image/common/arw_r.gif"/></span>
-                                    <span class="pipe show">|</span><a
-                                        class="show"
-                                        href="forum.php-mod=viewthread&tid=961842&extra=page=1&ordertype=1.htm"
-                                        tppabs="http://bbs.51testing.com/forum.php?mod=viewthread&tid=961842&extra=page%3D1&ordertype=1">倒序浏览</a>
-                                    <span class="pipe show">|</span><a class="show"
-                                                                       href="javascript:;"
-                                                                       onclick="readmode($('thread_subject').innerHTML, 3129428);">阅读模式</a>
-                                </div>
+                                <img class="authicn vm"
+                                     src="static/image/common/online_member.gif"
+                                     tppabs="http://bbs.51testing.com/static/image/common/online_member.gif"/>
                             </div>
                         </div>
                         <div class="pct">
-                            <style type="text/css">.pcb {
-                                margin-right: 0
-                            }</style>
                             <div class="pcb">
 
                                 <div class="t_fsz">
                                     <!--                                    右边-->
                                     <table cellpadding="0" cellspacing="0">
                                         <tr>
-                                            <td class="t_f" id="postmessage_3129428">
-                                                <div class="a_pr" style="margin-left:10px;width:auto"><a
-                                                        href="thread-1261000-1-1.html"
-                                                        target="_blank"
-                                                        tppabs="http://bbs.51testing.com/thread-1261000-1-1.html"><img
-                                                        border="0"
-                                                        src="data/attachment/common/cf/170429ztdw5py59ddwmdrd.jpg"
-                                                        tppabs="http://bbs.51testing.com/data/attachment/common/cf/170429ztdw5py59ddwmdrd.jpg"></a>
-                                                </div>
+                                            <td class="t_f">
                                                 或许是因为在职面试，接到面试通知后，也没有认真的去准备面试，直到面试的前1天晚上，才开始临时抱佛脚，为面试做准备。看了一些软件测试相关的概念，网上找了一些测试工具的原理，还有工作中的一些总结：<br/>
                                                 1.&nbsp;&nbsp;黑盒测试、白盒测试、动态测试、静态测试的概念及它们之间的关系。<br/>
                                                 2.&nbsp; &nbsp; &nbsp; &nbsp; 性能测试、压力测试、负载测试、稳定性测试的概念以及它们之间的关系。<br/>
@@ -250,10 +291,10 @@
                                     </table>
 
                                 </div>
-                                <div class="cm" id="comment_3129428">
+                                <div class="cm">
                                 </div>
 
-                                <div id="post_rate_div_3129428"></div>
+                                <div></div>
                             </div>
                         </div>
 
@@ -263,7 +304,7 @@
                     <td class="plc plm">
                     </td>
                 </tr>
-                <tr id="_postposition3129428"></tr>
+                <tr></tr>
                 <tr>
                     <td class="pls"></td>
                     <td class="plc" style="overflow:visible;">
@@ -272,10 +313,8 @@
                                 <em>
                                     <a class="fastre"
                                        href="forum.php-mod=post&action=reply&fid=86&tid=961842&reppost=3129428&extra=page=1&page=1.htm"
-                                       onclick="showWindow('reply', this.href)"
                                        tppabs="http://bbs.51testing.com/forum.php?mod=post&action=reply&fid=86&tid=961842&reppost=3129428&extra=page%3D1&page=1">点赞</a>
                                 </em>
-                                <!--<script reload="1" type="text/javascript">checkmgcmn('post_3129428')</script>-->
                             </div>
                         </div>
                     </td>

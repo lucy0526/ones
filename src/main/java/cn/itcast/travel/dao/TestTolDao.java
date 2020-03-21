@@ -10,7 +10,6 @@ public interface TestTolDao {
 
     List<TestTol> findPopularity();
 
-
     int findTotalCount(int cid, String tname);
 
     List<TestTol> findByPage(int cid, int start, int pageSize, String tname);

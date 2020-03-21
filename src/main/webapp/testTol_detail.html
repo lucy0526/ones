@@ -23,9 +23,9 @@
     </div>-->
     <div class="prosum_box">
         <dl class="prosum_left">
-            <dt>
-                <img alt="" class="big_img"
-                     src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m49788843d72171643297ccc033d9288ee.jpg">
+            <dt id="big_img">
+                <!--<img alt="" class="big_img"
+                     src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m49788843d72171643297ccc033d9288ee.jpg">-->
             </dt>
             <dd id="dd">
                 <!--<a class="up_img up_img_disable"></a>
@@ -182,6 +182,8 @@
             $("#favoriteCount").html("已收藏" + testTol.count + "次");
             $("#source_sp").html('<a href="' + testTol.source + '">点击查看使用详情</a>');
             $("#thread_subject").html(testTol.tname);
+            $("#big_img").html('<img alt="" class="big_img"\n' +
+                '                     src="' + testTol.timage + '">');
 
 
             var ddstr = '<a class="up_img up_img_disable"></a>';
@@ -200,7 +202,7 @@
                 ddstr += astr;
             }
             ddstr += '<a class="down_img down_img_disable" style="margin-bottom: 0;"></a>';
-            $("#dd").html(ddstr);
+            /*$("#dd").html(ddstr);*/
             goImg();
         })
     })

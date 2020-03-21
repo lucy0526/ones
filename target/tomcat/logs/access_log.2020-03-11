@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [11/Mar/2020:19:28:16 +0800] "GET /ones HTTP/1.1" 302 - http-bio-80-exec-1 0
+0:0:0:0:0:0:0:1 - - [11/Mar/2020:19:28:18 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-80-exec-4 0
+0:0:0:0:0:0:0:1 - - [11/Mar/2020:19:28:19 +0800] "GET /ones/user/findOne HTTP/1.1" 200 4 http-bio-80-exec-5 201
+0:0:0:0:0:0:0:1 - - [11/Mar/2020:19:28:19 +0800] "GET /ones/category/findAll HTTP/1.1" 200 211 http-bio-80-exec-6 775
+0:0:0:0:0:0:0:1 - - [11/Mar/2020:19:28:19 +0800] "GET /ones/testTol/findNewest HTTP/1.1" 200 2996 http-bio-80-exec-3 1735
+0:0:0:0:0:0:0:1 - - [11/Mar/2020:19:28:19 +0800] "GET /ones/testTol/findPopularity HTTP/1.1" 200 5076 http-bio-80-exec-2 1736

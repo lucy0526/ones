@@ -22,6 +22,27 @@ ALTER TABLE tab_test_tol  MODIFY COLUMN source VARCHAR(500);
 
 
 
+/*==============================================================*/
+/* Table:                        基于用户的推荐                    */
+/*==============================================================*/
+CREATE TABLE tab_user_set
+(
+   uid                  INT NOT NULL,
+   tid_one                  INT NOT NULL,
+   tid_two                  INT NOT NULL,
+   tid_three                  INT NOT NULL,
+   tid_four                  INT NOT NULL,
+   tid_five                  INT NOT NULL
+);
+/*==============================================================*/
+/* Table:                      用户给工具评分记录                 */
+/*==============================================================*/
+CREATE TABLE tab_score
+(
+   uid                  INT NOT NULL,
+   tid                  INT NOT NULL,
+   score                  INT NOT NULL
+);
 
 
 
