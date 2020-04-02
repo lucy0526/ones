@@ -27,6 +27,9 @@
             findPopularity();
         });
 
+        /*
+        找到收藏次数最多的测试工具
+        */
         function findPopularity() {
             $.get("testTol/findPopularity", {}, function (data) {
                 var list = "";

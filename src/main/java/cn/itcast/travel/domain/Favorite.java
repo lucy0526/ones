@@ -7,8 +7,8 @@ import java.io.Serializable;
  */
 public class Favorite implements Serializable {
     private String date;//收藏时间
-    private User user;//所属用户
-    private TestTol testTol;
+    private int uid;//所属用户
+    private int tid;
 
     /**
      * 无参构造方法
@@ -16,11 +16,19 @@ public class Favorite implements Serializable {
     public Favorite() {
     }
 
-
-    public Favorite(String date, User user, TestTol testTol) {
+    public Favorite(String date, int uid, int tid) {
         this.date = date;
-        this.user = user;
-        this.testTol = testTol;
+        this.uid = uid;
+        this.tid = tid;
+    }
+
+    @Override
+    public String toString() {
+        return "Favorite{" +
+                "date='" + date + '\'' +
+                ", uid=" + uid +
+                ", tid=" + tid +
+                '}';
     }
 
     public String getDate() {
@@ -31,19 +39,19 @@ public class Favorite implements Serializable {
         this.date = date;
     }
 
-    public User getUser() {
-        return user;
+    public int getUid() {
+        return uid;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
-    public TestTol getTestTol() {
-        return testTol;
+    public int getTid() {
+        return tid;
     }
 
-    public void setTestTol(TestTol testTol) {
-        this.testTol = testTol;
+    public void setTid(int tid) {
+        this.tid = tid;
     }
 }

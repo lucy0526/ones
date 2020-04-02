@@ -23,28 +23,40 @@ ALTER TABLE tab_test_tol  MODIFY COLUMN source VARCHAR(500);
 
 
 /*==============================================================*/
-/* Table:                        基于用户的推荐                    */
-/*==============================================================*/
-CREATE TABLE tab_user_set
-(
-   uid                  INT NOT NULL,
-   tid_one                  INT NOT NULL,
-   tid_two                  INT NOT NULL,
-   tid_three                  INT NOT NULL,
-   tid_four                  INT NOT NULL,
-   tid_five                  INT NOT NULL
-);
-/*==============================================================*/
 /* Table:                      用户给工具评分记录                 */
 /*==============================================================*/
 CREATE TABLE tab_score
 (
    uid                  INT NOT NULL,
    tid                  INT NOT NULL,
-   score                  INT NOT NULL
+   score                  float NOT NULL
+);
+
+/*==============================================================*/
+/* Table:                        基于用户的推荐                    */
+/*==============================================================*/
+CREATE TABLE tab_basedUser_recommend
+(
+   uid                  INT NOT NULL,
+   tid                  INT NOT NULL,
+   preScore                  float NOT NULL --预测评分
+);
+
+/*==============================================================*/
+/* Table:                        用户相异度                    */
+/*==============================================================*/
+CREATE TABLE tab_dev
+(
+   uid1                  INT NOT NULL,
+   uid2                  INT NOT NULL,
+   dev                  float NOT NULL,
+   count                  INT NOT NULL
 );
 
 
+
+
+-- -----------------------------------------------------------------------------------------------
 
 
 /*==============================================================*/
@@ -57,6 +69,9 @@ CREATE TABLE tab_category
    PRIMARY KEY (cid),
    UNIQUE KEY AK_nq_categoryname (cname)
 );
+
+
+
 
 
 /*==============================================================*/
@@ -123,7 +138,7 @@ CREATE TABLE tab_user
 );
 
 /*==============================================================*/
-/* Table: tab_user                                              */
+/* Table: tab_common                                              */
 /*==============================================================*/
 CREATE TABLE tab_common
 (
@@ -135,6 +150,9 @@ CREATE TABLE tab_common
    like               INT NOT NULL,
    PRIMARY KEY (cid)
 );
+
+
+
 
 /*==============================================================*/
 /* 外键                                                         */
@@ -172,7 +190,7 @@ ALTER TABLE tab_common ADD CONSTRAINT FK_common_user FOREIGN KEY (uid)
 
 
 /*==============================================================*/
-/* 数据                                                         */
+/* 测试工具图片数据                                                         */
 /*==============================================================*/
 /*[15:33:31][10 ms]*/ INSERT INTO `ones`.`tab_test_img` (`tid`, `bigPic`, `smallPic`) VALUES ('25', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m40920d0669855e745d97f9ad1df966ebb.jpg', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m20920d0669855e745d97f9ad1df966ebb.jpg');
 /*[15:34:07][4 ms]*/ INSERT INTO `ones`.`tab_test_img` (`tid`, `bigPic`, `smallPic`) VALUES ('25', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m49788843d72171643297ccc033d9288ee.jpg', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m29788843d72171643297ccc033d9288ee.jpg');
@@ -180,17 +198,28 @@ ALTER TABLE tab_common ADD CONSTRAINT FK_common_user FOREIGN KEY (uid)
 /*[15:35:11][8 ms]*/ INSERT INTO `ones`.`tab_test_img` (`tid`, `bigPic`, `smallPic`) VALUES ('25', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m46d8cb900e9f6c0a762aca19eae40c00c.jpg', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m26d8cb900e9f6c0a762aca19eae40c00c.jpg');
 /*[15:35:33][2 ms]*/ INSERT INTO `ones`.`tab_test_img` (`tid`, `bigPic`, `smallPic`) VALUES ('25', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m45ea00f6eba562a767b5095bbf8cffe07.jpg', 'http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m25ea00f6eba562a767b5095bbf8cffe07.jpg');
 
+/*==============================================================*/
+/* 收藏测试工具数据                                                         */
+/*==============================================================*/
+
+/*[22:34:39][5 ms]*/ INSERT INTO `ones`.`tab_favorite` (`tid`, `uid`) VALUES ('1', '4');
+/*[22:34:49][0 ms]*/ INSERT INTO `ones`.`tab_favorite` (`tid`, `uid`) VALUES ('1', '4');
+/*[22:34:52][0 ms]*/ INSERT INTO `ones`.`tab_favorite` (`tid`, `uid`) VALUES ('1', '4');
+/*[22:35:06][9 ms]*/ INSERT INTO `ones`.`tab_favorite` (`tid`, `date`, `uid`) VALUES ('1', '2020-04-01', '4');
+/*[22:35:11][0 ms]*/ INSERT INTO `ones`.`tab_favorite` (`uid`) VALUES ('4');
+/*[22:35:23][7 ms]*/ INSERT INTO `ones`.`tab_favorite` (`tid`, `date`, `uid`) VALUES ('2', '2020-04-01', '4');
+/*[22:35:39][7 ms]*/ INSERT INTO `ones`.`tab_favorite` (`tid`, `date`, `uid`) VALUES ('3', '2020-04-02', '4');
+/*[22:35:47][7 ms]*/ INSERT INTO `ones`.`tab_favorite` (`tid`, `date`, `uid`) VALUES ('4', '2020-04-01', '4');
+/*[22:35:57][7 ms]*/ INSERT INTO `ones`.`tab_favorite` (`tid`, `date`, `uid`) VALUES ('5', '2020-03-11', '4');
+/*[22:36:06][8 ms]*/ INSERT INTO `ones`.`tab_favorite` (`tid`, `date`, `uid`) VALUES ('6', '2020-04-09', '4');
 
 
 
 
 
-
-
-
-
-
-
+/*==============================================================*/
+/* 测试工具数据                                                         */
+/*==============================================================*/
 
 INSERT INTO `ones`.`tab_test_tol` (`tname`, `price`, `testIntroduce`, `tflag`, `tdate`, `count`, `cid`, `timage`, `source`) VALUES
 ('LoadRunner', '0', 'LoadRunner，是一种预测系统行为和性能的负载测试工具。通过模拟上千万用户实施并发负载及实时性能监测的方式来确认和查找问题，LoadRunner能够对整个企业架构进行测试。企业使用LoadRunner能最大限度地缩短测试时间，优化性能和加速应用系统的发布周期。',
@@ -356,10 +385,6 @@ INSERT INTO `ones`.`tab_test_tol` (`tname`, `price`, `testIntroduce`, `tflag`, `
 ('WAS', '0',
 'WAS是Micro$oft提供的免费的Web负载压力测试工具，应用广泛。WAS可以通过一台或者多台客户机模拟大量用户的活动。WAS支持身份验证、加密和Cookies，也能够模拟各种浏览器和Modem速度，它的功能和性能可以与数万美元的产品媲美。'
 ,'1', '2020-01-22', '0', '4', 'images/jiangxuan_4.jpg', 'https://zhidao.baidu.com/question/526817422.html?qbl=relate_question_0&word=%C8%ED%BC%FE%B2%E2%CA%D4%B9%A4%BE%DF%B3%A3%D3%C3%B5%C4%B6%BC%D3%D0%C4%C4%D0%A9');
-
-
-
-
 
 INSERT INTO `ones`.`tab_test_tol` (`tname`, `price`, `testIntroduce`, `tflag`, `tdate`, `count`, `cid`, `timage`, `source`) VALUES
 ('LoadRunner', '0', 'LoadRunner，是一种预测系统行为和性能的负载测试工具。通过模拟上千万用户实施并发负载及实时性能监测的方式来确认和查找问题，LoadRunner能够对整个企业架构进行测试。企业使用LoadRunner能最大限度地缩短测试时间，优化性能和加速应用系统的发布周期。',

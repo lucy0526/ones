@@ -35,6 +35,19 @@
                 location.href = "http://localhost/ones/testTol_list.html?cid=" + cid + "&tname=" + tname;
         });
 
+        //跳转到我的收藏
+        $("#myfavorite").click(function () {
+            // 查看是否登录
+            $.get("user/findOne", {}, function (user) {
+                if (user != null) {
+                    location.href = "http://localhost/ones/myfavorite.html?uid="+user.uid;
+                } else {
+                    alert("请先登录！");
+                    location.href = "http://localhost/ones/login.html";
+                }
+            })
+        });
+
     })
 </script>
 
@@ -54,7 +67,7 @@
         <div class="login">
 
             <span id="span_usetname"> </span>
-            <a href="myfavorite.html" class="collection">我的收藏</a>
+            <a id="myfavorite" class="collection">我的收藏</a>
             <a href="javascript:location.href='user/exit';">退出</a>
         </div>
     </div>

@@ -1,10 +1,9 @@
 package cn.itcast.travel.service.impl;
 
 import cn.itcast.travel.dao.CommonDao;
-import cn.itcast.travel.dao.CommonDaoImpl;
+import cn.itcast.travel.dao.impl.CommonDaoImpl;
 import cn.itcast.travel.domain.Common;
 import cn.itcast.travel.domain.PageBean;
-import cn.itcast.travel.domain.TestTol;
 import cn.itcast.travel.service.CommonService;
 
 import java.util.List;
