@@ -28,4 +28,9 @@ public class CommonServiceImpl implements CommonService {
 
         return pb;
     }
+
+    @Override
+    public void addCommon(int uid, int tid, String commonContent) {
+        commonDao.addCommon(uid, tid, commonContent);
+    }
 }

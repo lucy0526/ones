@@ -8,4 +8,6 @@ import java.util.List;
 public interface CommonDao {
     List<Common> findByPage(int tid, int start, int pageSize);
     int findTotalCount(int tid);
+
+    public void addCommon(int uid, int tid, String commonContent);
 }

@@ -19,7 +19,7 @@ public class CharchaterFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse rep, FilterChain filterChain) throws IOException, ServletException {
 
-//        System.out.printf("!!!!!!!!!!!lkjlnlk;");
+//        System.out.printf("!!!!!!!!!!!l/kjlnlk;");
 
         //将父接口转为子接口
         HttpServletRequest request = (HttpServletRequest) req;

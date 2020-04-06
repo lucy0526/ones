@@ -11,4 +11,7 @@ public interface ScoreDao {
 
     public List<Score> findByTid(int tid);
 
+    public List<Score> findByUid(int uid);
+
+    public List<Score> findByUidAndTid(int uid, int tid);
 }

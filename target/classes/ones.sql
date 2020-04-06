@@ -50,7 +50,7 @@ CREATE TABLE tab_dev
    uid1                  INT NOT NULL,
    uid2                  INT NOT NULL,
    dev                  float NOT NULL,
-   count                  INT NOT NULL
+   dev_count                  INT NOT NULL
 );
 
 

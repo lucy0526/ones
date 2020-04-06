@@ -28,4 +28,17 @@ public class ScoreDaoImpl implements ScoreDao {
         String sql = "SELECT * FROM tab_score where tid=?";
         return template.query(sql, new BeanPropertyRowMapper<Score>(Score.class), tid);
     }
+
+    @Override
+    public List<Score> findByUid(int uid) {
+        String sql = "SELECT * FROM tab_score where uid=?";
+        return template.query(sql, new BeanPropertyRowMapper<Score>(Score.class), uid);
+    }
+
+    @Override
+    public List<Score> findByUidAndTid(int uid, int tid) {
+        String sql = "SELECT * FROM tab_score where uid=? and tid=?";
+        return template.query(sql, new BeanPropertyRowMapper<Score>(Score.class), uid, tid);
+
+    }
 }

@@ -92,7 +92,7 @@
     </div>
     <div class="you_need_konw">
         <span>评论</span>
-        <!--引入评论-->
+        <!--引入评论:在include.js文件中-->
         <div class="notice" id="common"></div>
     </div>
 </div>
@@ -111,7 +111,7 @@
 
 
 <script>
-    $(document).ready(function () {
+   /* $(document).ready(function () {
         goImg();
     });
 
@@ -149,9 +149,9 @@
         // var timer = setInterval("auto_play()", 5000);
 
     }
-
+*/
     //自动轮播方法
-    function auto_play() {
+    /*function auto_play() {
         var cur_index = $('.prosum_left dd').find('a.cur_img').index();
         cur_index = cur_index - 1;
         var num = $('.little_img').length;
@@ -171,7 +171,7 @@
             $('.little_img:eq(0)').addClass('cur_img');
             $('.big_img').attr('src', big_pic);
         }
-    }
+    }*/
 
     $(function () {
         var tid = getParameter("tid");
