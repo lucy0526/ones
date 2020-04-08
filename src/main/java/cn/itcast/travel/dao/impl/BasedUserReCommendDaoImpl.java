@@ -8,6 +8,8 @@ import cn.itcast.travel.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 public class BasedUserReCommendDaoImpl implements BasedUserReCommendDao {
     private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
 
@@ -38,5 +40,16 @@ public class BasedUserReCommendDaoImpl implements BasedUserReCommendDao {
     public void addPreScore(float p, int uid, int tid) {
         String sql = "insert into tab_basedUser_recommend values (?,?,?)";
         template.update(sql, uid, tid, p);
+    }
+
+    @Override
+    public List<BasedUserRecommend> findByUid(int uid) {
+        List<BasedUserRecommend> recommendList = null;
+        try {
+            String sql = "select * from tab_basedUser_recommend where uid=?";
+            recommendList = template.query(sql, new BeanPropertyRowMapper<BasedUserRecommend>(BasedUserRecommend.class), uid);
+        } catch (Exception e) {
+        }
+        return recommendList;
     }
 }

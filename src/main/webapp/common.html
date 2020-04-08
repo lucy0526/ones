@@ -51,36 +51,18 @@
             //当表单提交时，校验
             $("#commonForm").submit(function () {
                     //ajax提交
-                    $.post("common/addCommon", $(this).serialize(), function (y_data) {
-
+                    $.post("common/addCommon", $(this).serialize(), function () {
+                        location.reload();
                     });
                 return false;//不会提交，没有返回值或者返回true都会提交
             });
         })
-        /*function addCommon() {
+
+        $(function () {
             var tid = getParameter("tid");
-            $("#tidHidden").val(tid);
-
-            // $("#commonForm").submit();
-            //当表单提交时，校验
-            $("#registerForm").submit(function () {
-                if (checkUsername() && checkPassword() && checkEmail()) {
-                    //ajax提交
-                    $.post("user/regist", $(this).serialize(), function (y_data) {
-                        var data = eval("(" + y_data + ")");// 将json转换为对象 json 格式
-
-                        //处理服务器响应的数据
-                        if (data.flag) {
-                            location.href = "register_ok.html";
-                        } else {
-                            $("#errorMsg").html(data.errorMsg);
-                        }
-                    });
-                }
-                return false;//不会提交，没有返回值或者返回true都会提交
-            });
-
-        }*/
+            //当页码加载完成后，调用load方法，发送ajax请求加载数据
+            load(tid, null);
+        });
 
         /*
         显示评论列表:
@@ -149,8 +131,8 @@
                 if (nextNum >= pb.totalPage) {
                     nextNum = pb.totalPage;
                 }
-                var nextPage = '<li onclick="javascipt:load(' + cid + ',' + nextNum + ')" class="threeword"><a href="javascript:void(0)">下一页</a></li>';
-                var lastPage = '<li onclick="javascipt:load(' + cid + ',pb.totalPage)" class="threeword"><a href="javascript:void(0)">末页</a></li>';
+                var nextPage = '<li onclick="javascipt:load(' + tid + ',' + nextNum + ')" class="threeword"><a href="javascript:void(0)">下一页</a></li>';
+                var lastPage = '<li onclick="javascipt:load(' + tid + ',pb.totalPage)" class="threeword"><a href="javascript:void(0)">末页</a></li>';
                 lis += nextPage;
                 lis += lastPage;
                 //将lis内容设置到 ul
@@ -160,7 +142,7 @@
                 var common_lis = "";
                 for (var i = 0; i < pb.list.length; i++) {
                     //获取{rid:1,tname:"xxx"}
-                    var route = pb.list[i];
+                    var common = pb.list[i];
 
                     var li = '            <table cellpadding="0" cellspacing="0" class="plhin" summary="pid3129428">\n' +
                         '                <tr>\n' +
@@ -178,9 +160,8 @@
                         '                                    <center>用户</center>\n' +
                         '                                    <table>\n' +
                         '                                        <tr>\n' +
-                        '                                            <th>\n' +
-                        '                                            <th><font size="5px"></font><br>\n' +
-                        '                                                <span>6&nbsp;天前</span>\n' +
+                        '                                            <font size="5px"></font><br>\n' +
+                        '                                                <span>'+common.cdate+'</span>\n' +
                         '                                        </tr>\n' +
                         '                                    </table>\n' +
                         '                                </li>\n' +
@@ -205,10 +186,7 @@
                         '                                    <table cellpadding="0" cellspacing="0">\n' +
                         '                                        <tr>\n' +
                         '                                            <td class="t_f">\n' +
-                        '                                                或许是因为在职面试，接到面试通知后，也没有认真的去准备面试，直到面试的前1天晚上，才开始临时抱佛脚，为面试做准备。看了一些软件测试相关的概念，网上找了一些测试工具的原理，还有工作中的一些总结：<br/>\n' +
-                        '                                                1.&nbsp;&nbsp;黑盒测试、白盒测试、动态测试、静态测试的概念及它们之间的关系。<br/>\n' +
-                        '                                                2.&nbsp; &nbsp; &nbsp; &nbsp; 性能测试、压力测试、负载测试、稳定性测试的概念以及它们之间的关系。<br/>\n' +
-                        '                                                3.&nbsp; &nbsp; &nbsp; &nbsp; 软件测试V型结构。<br/>\n' +
+                        '                                                '+common.cdescribe+'<br/>\n' +
                         '                                            </td>\n' +
                         '                                        </tr>\n' +
                         '                                    </table>\n' +
@@ -235,8 +213,8 @@
                         '                            <div class="pob cl">\n' +
                         '                                <em>\n' +
                         '                                    <a class="fastre"\n' +
-                        '                                       href="forum.php-mod=post&action=reply&fid=86&tid=961842&reppost=3129428&extra=page=1&page=1.htm"\n' +
-                        '                                       tppabs="http://bbs.51testing.com/forum.php?mod=post&action=reply&fid=86&tid=961842&reppost=3129428&extra=page%3D1&page=1">点赞</a>\n' +
+                        '                                       href="#"\n' +
+                        '                                       tppabs="http://bbs.51testing.com/forum.php?mod=post&action=reply&fid=86&tid=961842&reppost=3129428&extra=page%3D1&page=1"></a>\n' +
                         '                                </em>\n' +
                         '                            </div>\n' +
                         '                        </div>\n' +
@@ -251,7 +229,7 @@
                         '            </table>\n';
                     common_lis += li;
                 }
-                $("#commons").html(common_lis);
+                $("#perCommon").html(common_lis);
 
                 //跳转页面后，定位到页面顶部
                 window.scrollTo(0, 0);
@@ -296,7 +274,7 @@
         </table>
 
         <!--        每条评论-->
-        <div id="post_3129428">
+        <div id="perCommon">
             <table cellpadding="0" cellspacing="0" class="plhin" summary="pid3129428">
                 <tr>
                     <!--                    左边-->
@@ -388,8 +366,19 @@
         <div class="pl" id="postlistreply">
             <div class="viewthread_table" id="post_new" style="display: none"></div>
         </div>
-        <div id='hiddenpoststip'><a href='javascript:display_blocked_post();'>还有一些帖子被系统自动隐藏，点此展开</a></div>
+<!--        <div id='hiddenpoststip'><a href='javascript:display_blocked_post();'>还有一些帖子被系统自动隐藏，点此展开</a></div>-->
         <div id="hiddenposts"></div>
+
+        <div class="page_num_inf">
+            <i></i> 共
+            <span id="totalPage"></span>页
+            <span id="totalCount"></span>条
+        </div>
+        <div class="pageNum">
+            <ul id="pageNum">
+            </ul>
+        </div>
+
     </div>
 
 

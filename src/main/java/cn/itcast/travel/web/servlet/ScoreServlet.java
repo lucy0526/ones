@@ -23,11 +23,37 @@ public class ScoreServlet extends BaseServlet {
     private BasedUserReCommendService basedUserReCommendService = new BasedUserReCommendServiceImpl();
     private ScoreService scoreService = new ScoreServiceImpl();
     private DevService devService = new DevServiceImpl();
+    public void findTotalScoreByTid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String tidStr = request.getParameter("tid");
+        int tid = Integer.parseInt(tidStr);
+
+        float score = 0;
+        float count = 0;
+
+        List<Score> scoreList = scoreService.findByTid(tid);
+        if (scoreList.size() > 0)
+        {
+            for (Score perScore : scoreList)
+            {
+                score += perScore.getScore();
+                count++;
+            }
+
+            score = (int)score/count;
+        }
+
+        writeValue(response, (int)score);
+
+
+    }
+
 
     /**
      * 用户评分
      */
     public void addScore(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean flag = true;
+
         String uidStr = request.getParameter("uid");
         String tidStr = request.getParameter("tid");
         String scoreStr = request.getParameter("score");
@@ -61,7 +87,11 @@ public class ScoreServlet extends BaseServlet {
             basedUserReCommendService.deleteByUidAndTid(uid, tid);
 
 
+        }else {
+            flag = false;
         }
+
+        writeValue(response, flag);
 
 
         /*

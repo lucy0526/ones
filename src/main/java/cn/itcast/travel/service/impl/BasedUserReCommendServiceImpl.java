@@ -5,6 +5,8 @@ import cn.itcast.travel.dao.impl.BasedUserReCommendDaoImpl;
 import cn.itcast.travel.domain.BasedUserRecommend;
 import cn.itcast.travel.service.BasedUserReCommendService;
 
+import java.util.List;
+
 public class BasedUserReCommendServiceImpl implements BasedUserReCommendService {
     private BasedUserReCommendDao basedUserReCommendDao = new BasedUserReCommendDaoImpl();
 
@@ -30,5 +32,10 @@ public class BasedUserReCommendServiceImpl implements BasedUserReCommendService 
     @Override
     public void addPreScore(float p, int uid, int tid) {
         basedUserReCommendDao.addPreScore(p, uid, tid);
+    }
+
+    @Override
+    public List<BasedUserRecommend> findByUid(int uid) {
+        return basedUserReCommendDao.findByUid(uid);
     }
 }

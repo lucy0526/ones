@@ -28,6 +28,7 @@ F:\idea_maven\ones\src\main\java\cn\itcast\travel\util\Md5Util.java
 F:\idea_maven\ones\src\main\java\cn\itcast\travel\util\UuidUtil.java
 F:\idea_maven\ones\src\main\java\cn\itcast\travel\dao\BasedUserReCommendDao.java
 F:\idea_maven\ones\src\main\java\cn\itcast\travel\domain\Category.java
+F:\idea_maven\ones\src\main\java\cn\itcast\travel\domain\RecommendToPage.java
 F:\idea_maven\ones\src\main\java\cn\itcast\travel\web\servlet\RecommendServlet.java
 F:\idea_maven\ones\src\main\java\cn\itcast\travel\web\servlet\BaseServlet.java
 F:\idea_maven\ones\src\main\java\cn\itcast\travel\dao\SellerDao.java

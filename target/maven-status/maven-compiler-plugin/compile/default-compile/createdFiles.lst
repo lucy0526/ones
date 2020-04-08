@@ -12,6 +12,7 @@ cn\itcast\travel\domain\BasedUserRecommend.class
 cn\itcast\travel\domain\TestTolImg.class
 cn\itcast\travel\domain\Dev.class
 cn\itcast\travel\web\servlet\FavoriteServlet.class
+cn\itcast\travel\domain\RecommendToPage.class
 cn\itcast\travel\web\servlet\CategoryServlet.class
 cn\itcast\travel\service\impl\CategoryServiceImpl.class
 cn\itcast\travel\domain\ScoreAndDev.class

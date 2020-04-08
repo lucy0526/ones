@@ -87,7 +87,89 @@
                     <!--<a class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>-->
                     <span id="favoriteCount"></span>
                 </p>
+                <p class="price">平均评分：<strong id="totalScore"> </strong></p>
+
             </div>
+
+            <div class="ll j a_stars">
+
+
+                评价:
+                <span id="rating"> <span
+                        data-hollow="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/images/start.svg"
+                        data-hollow-2x="https://img3.doubanio.com/f/shire/95cc2fa733221bb8edd28ad56a7145a5ad33383e/pics/rating_icons/star_hollow_hover@2x.png"
+                        data-solid="https://img3.doubanio.com/f/shire/5a2327c04c0c231bced131ddf3f4467eb80c1c86/pics/rating_icons/star_onmouseover.png"
+                        data-solid-2x="https://img3.doubanio.com/f/shire/7258904022439076d57303c3b06ad195bf1dc41a/pics/rating_icons/star_onmouseover@2x.png"
+                        id="stars">
+
+                <a class="j a_show_login"
+                   href="#"
+                   name="pbtn-34876223-1" tppabs="https://www.douban.com/register?reason=rate">
+
+                <img height="16"
+                     onclick="addScore(2)"
+
+                     id="star1"
+                     src="images/start.svg"
+                     tppabs="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/images/start.svg"
+                     width="16"/>
+                </a>2分
+
+                <a class="j a_show_login"
+                   name="pbtn-34876223-2" tppabs="https://www.douban.com/register?reason=rate">
+                <img height="16"
+                     onclick="addScore(4)"
+                     id="star2"
+                     src="images/start.svg"
+                     tppabs="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/images/start.svg"
+                     width="16"/>
+                </a>4分
+
+                <a class="j a_show_login"
+                   name="pbtn-34876223-3" tppabs="https://www.douban.com/register?reason=rate">
+                <img height="16"
+                     onclick="addScore(6)"
+                     id="star3"
+                     src="images/start.svg"
+                     tppabs="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/images/start.svg"
+                     width="16"/></a>6分
+
+                <a class="j a_show_login"
+                   name="pbtn-34876223-4" tppabs="https://www.douban.com/register?reason=rate">
+                 <img height="16"
+                      onclick="addScore(8)"
+                      id="star4"
+                      src="images/start.svg"
+                      tppabs="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/images/start.svg"
+                      width="16"/></a>8分
+
+                <a class="j a_show_login"
+                   name="pbtn-34876223-5" tppabs="https://www.douban.com/register?reason=rate">
+                    <img height="16"
+                         onclick="addScore(10)"
+                         id="star5"
+                         src="images/start.svg"
+                         tppabs="https://img3.doubanio.com/f/shire/2520c01967207a1735171056ec588c8c1257e5f8/pics/rating_icons/images/start.svg"
+                         width="16"/>
+                    <!--<div>
+                        <img height="16"
+                             src="images/start.svg"
+                             width="16"/>
+                        <img height="16"
+                             src="images/start.svg"
+                             width="16"/>
+
+                    </div>-->
+
+                </a>10分
+
+                </span><span class="pl" id="rateword"></span>
+                <input id="n_rating" type="hidden" value=""/>
+                </span>
+
+            </div>
+
+
         </div>
     </div>
     <div class="you_need_konw">
@@ -111,68 +193,6 @@
 
 
 <script>
-   /* $(document).ready(function () {
-        goImg();
-    });
-
-    function goImg() {
-        //焦点图效果
-        //点击图片切换图片
-        $('.little_img').on('mousemove', function () {
-            $('.little_img').removeClass('cur_img');
-            var big_pic = $(this).data('bigpic');
-            $('.big_img').attr('src', big_pic);
-            $(this).addClass('cur_img');
-        });
-        //上下切换
-        var picindex = 0;
-        var nextindex = 4;
-        $('.down_img').on('click', function () {
-            var num = $('.little_img').length;
-            if ((nextindex + 1) <= num) {
-                $('.little_img:eq(' + picindex + ')').hide();
-                $('.little_img:eq(' + nextindex + ')').show();
-                picindex = picindex + 1;
-                nextindex = nextindex + 1;
-            }
-        });
-        $('.up_img').on('click', function () {
-            var num = $('.little_img').length;
-            if (picindex > 0) {
-                $('.little_img:eq(' + (nextindex - 1) + ')').hide();
-                $('.little_img:eq(' + (picindex - 1) + ')').show();
-                picindex = picindex - 1;
-                nextindex = nextindex - 1;
-            }
-        });
-        //自动播放
-        // var timer = setInterval("auto_play()", 5000);
-
-    }
-*/
-    //自动轮播方法
-    /*function auto_play() {
-        var cur_index = $('.prosum_left dd').find('a.cur_img').index();
-        cur_index = cur_index - 1;
-        var num = $('.little_img').length;
-        var max_index = 3;
-        if ((num - 1) < 3) {
-            max_index = num - 1;
-        }
-        if (cur_index < max_index) {
-            var next_index = cur_index + 1;
-            var big_pic = $('.little_img:eq(' + next_index + ')').data('bigpic');
-            $('.little_img').removeClass('cur_img');
-            $('.little_img:eq(' + next_index + ')').addClass('cur_img');
-            $('.big_img').attr('src', big_pic);
-        } else {
-            var big_pic = $('.little_img:eq(0)').data('bigpic');
-            $('.little_img').removeClass('cur_img');
-            $('.little_img:eq(0)').addClass('cur_img');
-            $('.big_img').attr('src', big_pic);
-        }
-    }*/
-
     $(function () {
         var tid = getParameter("tid");
         $.get("testTol/findOne", {tid: tid}, function (testTol) {
@@ -203,7 +223,6 @@
             }
             ddstr += '<a class="down_img down_img_disable" style="margin-bottom: 0;"></a>';
             /*$("#dd").html(ddstr);*/
-            goImg();
         })
     })
     //判断是否收藏
@@ -217,6 +236,14 @@
                 //已经收藏。删除按钮点击事件
                 $("#favorite").removeAttr("onclick");
             }
+        })
+    })
+
+    //查询得分
+    $(function () {
+        var tid = getParameter("tid");
+        $.get("score/findTotalScoreByTid", {tid: tid}, function (score) {
+            $("#totalScore").html(score+"分");
         })
     })
 
@@ -244,13 +271,47 @@
         $.get("user/findOne", {}, function (data) {
             if (data != null) {
                 $("#claim_div").css("display", "none");
-            }else {
+            } else {
                 $("#seccheck_fastpost").css("display", "none");
                 $("#common_div").css("display", "none");
             }
         });
 
     })
+
+    //添加评分
+    function addScore(score) {
+        var tid = getParameter("tid");
+
+        $.get("user/findOne", {}, function (user) {
+            if (user != null) {
+                $.get("score/addScore", {uid:user.uid, tid:tid, score:score}, function (flag) {
+                    if (flag){
+                        alert("评论成功！");
+                    }else {
+                        alert("您已经评过分了！");
+                    }
+                });
+
+            } else {
+                alert("请先登录,再评论！");
+                location.href = "http://localhost/ones/login.html";
+            }
+
+        })
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 </script>
 

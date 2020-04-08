@@ -44,6 +44,7 @@ textarea {
 }
 img{
     display: block;
+    cursor:pointer;
 }
 table {
     border-collapse: collapse; /*合并外连线*/
